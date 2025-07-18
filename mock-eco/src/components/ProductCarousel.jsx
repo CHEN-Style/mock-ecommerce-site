@@ -3,7 +3,7 @@
 import { useState } from "react";
 import ProductCard from "./ProductCard";
 
-export default function ProductCarousel({ products = [] }) {
+export default function ProductCarousel({ products = [], height = 400 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // 计算每个商品单位的宽度（商品宽度 + 间距）
@@ -38,14 +38,14 @@ export default function ProductCarousel({ products = [] }) {
   // 如果没有商品，显示空状态
   if (products.length === 0) {
     return (
-      <div className="relative w-full h-[400px] flex items-center justify-center overflow-hidden">
+      <div className="relative w-full flex items-center justify-center overflow-hidden" style={{ height: `${height}px` }}>
         <p className="text-gray-500 text-xl chewy-text">暂无商品</p>
       </div>
     );
   }
 
   return (
-    <div className="relative w-full h-[400px] flex items-center overflow-hidden">
+    <div className="relative w-full flex items-center overflow-hidden" style={{ height: `${height}px` }}>
       {/* 左侧按钮 */}
       <button
         onClick={moveLeft}
