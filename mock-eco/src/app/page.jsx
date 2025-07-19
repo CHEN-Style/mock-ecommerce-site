@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 import Marquee from "../components/Marquee";
 import ProductCarousel from "../components/ProductCarousel";
 import SkeletonLoader from "../components/SkeletonLoader";
@@ -39,7 +40,7 @@ export default function Home() {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:4000/api/products');
+        const response = await axios.get(`${API_BASE_URL}/api/products`);
         
         if (response.data.success) {
           const products = response.data.data;

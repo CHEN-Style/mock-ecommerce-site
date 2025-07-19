@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
+import API_BASE_URL from '../../config/api';
 import Marquee from "@/components/Marquee";
 import ProductCard from "@/components/ProductCard";
 import SkeletonLoader from "@/components/SkeletonLoader";
@@ -55,7 +56,7 @@ export default function ProductPage() {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:4000/api/products');
+        const response = await axios.get(`${API_BASE_URL}/api/products`);
         
         if (response.data.success) {
           const transformedProducts = response.data.data.map(transformProductData);

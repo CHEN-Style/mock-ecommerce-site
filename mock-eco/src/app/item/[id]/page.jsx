@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import axios from 'axios';
+import API_BASE_URL from '../../../config/api';
 import SkeletonLoader from '@/components/SkeletonLoader';
 
 export default function ItemPage() {
@@ -23,7 +24,7 @@ export default function ItemPage() {
     const fetchItem = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:4000/api/products/${id}`);
+        const response = await axios.get(`${API_BASE_URL}/api/products/${id}`);
         
         if (response.data.success) {
           setItem(response.data.data);

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../../config/api';
 
 export default function UserPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -48,7 +49,7 @@ export default function UserPage() {
   // 获取用户信息
   const fetchUserInfo = async (token) => {
     try {
-      const response = await axios.get('http://localhost:4000/api/auth/me', {
+      const response = await axios.get(`${API_BASE_URL}/api/auth/me`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (response.data.success) {
@@ -76,7 +77,7 @@ export default function UserPage() {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:4000/api/auth/login', {
+      const response = await axios.post(`${API_BASE_URL}/api/auth/login`, {
         emailOrUsername: formData.emailOrUsername,
         password: formData.password
       });
@@ -115,7 +116,7 @@ export default function UserPage() {
     }
 
     try {
-      const response = await axios.post('http://localhost:4000/api/auth/register', {
+      const response = await axios.post(`${API_BASE_URL}/api/auth/register`, {
         username: formData.username,
         email: formData.email,
         password: formData.password,
