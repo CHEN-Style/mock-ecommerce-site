@@ -1,16 +1,18 @@
+import Image from "next/image";
+
 export default function AboutPage() {
   return (
     <section className="w-full min-h-screen flex flex-col items-center border-t-2 border-b-2 border-black">
       <div className="animated-background h-[600px] flex flex-col items-center justify-center">
         <div className='w-full h-[550px] bg-[#cd4c3a] flex flex-row items-center justify-center '>
           <p className='w-[500px] luckiest-text text-7xl text-[#fbd576] text-center relative'>We sell <br /> vintage <br /> products</p>
-          <img src="/Logo/store.png" alt="store" className='w-[500px] h-[500px]' />
+          <Image src="/Logo/store.png" alt="store" width={500} height={500} className='w-[500px] h-[500px]' priority quality={85} />
           <p className='w-[500px] luckiest-text text-7xl text-[#fbd576] text-center '>quality <br /> is sure <br /> guaranteed</p>
         </div>
       </div>
       <div className="w-full flex flex-col items-center justify-center border-t-2 border-black">
         <div className="w-full h-[700px] flex flex-row items-center justify-center gap-10">
-          <img src="/Logo/store2.png" alt="store2" className='w-[600px] h-[600px]' />
+          <Image src="/Logo/store2.png" alt="store2" width={600} height={600} className='w-[600px] h-[600px]' loading="lazy" />
           <article className="w-[600px] h-[600px] flex flex-col items-start justify-center gap-10">
             <p className="luckiest-text text-6xl">What is EStudio?</p>
             <p className="text-2xl font-bold">At EStudio, we celebrate the timeless charm of vintage and the bold spirit of independent creators.
@@ -36,7 +38,7 @@ export default function AboutPage() {
               good vibes.
             </p>
           </article>          
-          <img src="/Logo/store3.png" alt="store3" className='w-[600px] h-[600px]' />
+          <Image src="/Logo/store3.png" alt="store3" width={600} height={600} className='w-[600px] h-[600px]' loading="lazy" />
         </div>
       </div>
     </section>

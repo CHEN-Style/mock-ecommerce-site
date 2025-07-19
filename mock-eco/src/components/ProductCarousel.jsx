@@ -3,7 +3,7 @@
 import { useState } from "react";
 import ProductCard from "./ProductCard";
 
-export default function ProductCarousel({ products = [], height = 400 }) {
+export default function ProductCarousel({ products = [], height = 400, prioritizeFirst = false }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // 计算每个商品单位的宽度（商品宽度 + 间距）
@@ -67,7 +67,11 @@ export default function ProductCarousel({ products = [], height = 400 }) {
         >
           {products.map((product, index) => (
             <div key={product.id} className="mr-5 flex-shrink-0"> {/* mr-5 提供20px的gap */}
-              <ProductCard product={product} />
+              <ProductCard 
+                product={product} 
+                priority={prioritizeFirst && index < 3}
+                index={index}
+              />
             </div>
           ))}
         </div>

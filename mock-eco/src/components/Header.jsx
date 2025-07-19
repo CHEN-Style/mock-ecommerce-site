@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import UserIconButton from "../../components/userIconBtn";
 import CartButton from "../../components/chartButton";
 
@@ -32,10 +33,14 @@ export default function Header() {
         <CartButton onClick={() => alert("This feature is developing")} />
       </nav>
       <Link href="/" className="absolute left-1/2 top-[90px] -translate-x-1/2 -translate-y-1/2 z-10">
-        <img
+        <Image
           src="/Logo/EStudioLOGO.png"
           alt="logo"
+          width={300}
+          height={300}
           className="w-[300px] h-[300px] transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer z-10"
+          priority
+          quality={90}
         />
       </Link>
     </header>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Marquee from "./Marquee";
 import SocialBar from "../../components/socialBar";
 
@@ -15,7 +16,7 @@ export default function Footer() {
     <footer className="w-full h-[450px] flex flex-col items-center relative">
       <Marquee text="🛒 BIG SALE NOW ✦ NEW ARRIVALS ✦ SHOP NOW ✦" speed={15} />
       <main className="w-full h-[280px] flex flex-row items-center justify-between gap-4 px-10">
-        <img src="/Logo/EStudioLOGO.png" alt="logo" className="w-[250px] h-[250px]" />
+        <Image src="/Logo/EStudioLOGO.png" alt="logo" width={250} height={250} className="w-[250px] h-[250px]" loading="lazy" />
         <div className="w-[330px] h-[250px] flex flex-col justify-center">
           <p className="luckiest-text font-extrabold text-3xl text-black mb-3">Stay Updated</p>
           <p className="chewy-text text-xl text-black mb-3">Subscribe and receive the good news first, exclusive discounts and perks!</p>

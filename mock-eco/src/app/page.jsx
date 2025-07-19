@@ -35,6 +35,32 @@ export default function Home() {
     };
   };
 
+  // 预加载关键图片
+  useEffect(() => {
+    const preloadImages = [
+      '/shop.png',
+      '/Logo/EStudioLOGO.png',
+      '/Logo/newSticker.png',
+      '/Logo/star.png'
+    ];
+
+    preloadImages.forEach(src => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = src;
+      document.head.appendChild(link);
+    });
+
+    // 清理预加载链接
+    return () => {
+      preloadImages.forEach(src => {
+        const links = document.querySelectorAll(`link[href="${src}"]`);
+        links.forEach(link => link.remove());
+      });
+    };
+  }, []);
+
   // 获取产品数据
   useEffect(() => {
     const fetchProducts = async () => {
@@ -107,7 +133,7 @@ export default function Home() {
               <button className="btn">Visit Our Store</button>
             </Link>
           </article>
-          <img src="/shop.png" alt="shop" className="w-[750px] relative right-[-70px]" />
+          <Image src="/shop.png" alt="shop" width={750} height={500} className="w-[750px] relative right-[-70px]" priority quality={90} />
         </div>
       </section>
       <div className="w-full h-[50px] bg-black flex items-center justify-center leading-none">
@@ -134,15 +160,15 @@ export default function Home() {
             <p className="chewy-text text-xl text-red-600">{error}</p>
           </div>
         ) : (
-          <ProductCarousel products={giftBoxProducts} height={500} />
+          <ProductCarousel products={giftBoxProducts} height={500} prioritizeFirst={true} />
         )}
       </section>
       
       {/* 礼品盒系列2 - 折扣专区 */}
       <section className="w-full h-[400px] border-b-2 border-black bg-[#fbd576] relative">
-        <img src="/Logo/section.png" alt="section" className="w-[300px] absolute top-[-82px] left-[-110px] z-10 rotate-[-15deg]" />
+        <Image src="/Logo/section.png" alt="section" width={300} height={200} className="w-[300px] absolute top-[-82px] left-[-110px] z-10 rotate-[-15deg]" loading="lazy" />
         <ProductCarousel products={giftBoxProductsNo2} />
-        <img src="/Logo/wow.png" alt="wow" className="w-[200px] absolute bottom-[-50px] right-[-80px] z-10 rotate-[15deg]" />
+        <Image src="/Logo/wow.png" alt="wow" width={200} height={150} className="w-[200px] absolute bottom-[-50px] right-[-80px] z-10 rotate-[15deg]" loading="lazy" />
       </section>
       
       {/* 特色商品系列 */}
@@ -173,7 +199,7 @@ export default function Home() {
       <section className="w-full h-[700px] border-b-2 border-black flex flex-col items-center pt-[50px] ">
         <p className="luckiest-text font-bold text-5xl text-black">What's Coming Soon?</p>
         <div className="mt-20 w-[400px] h-[430px] rounded-[40px] border-2 border-black flex flex-col items-center justify-center p-5 pt-0">
-          <img src="/Logo/smile.png" alt="smile" className="w-[150px] h-[150px]" />
+          <Image src="/Logo/smile.png" alt="smile" width={150} height={150} className="w-[150px] h-[150px]" loading="lazy" />
           <p className="chewy-text font-bold text-2xl text-black">Stay Updated</p>
           <p className="luckiest-text text-5xl text-black w-[300px] text-center">Watch this Space!</p>
           <p className="text-xl text-black w-[300px] text-center">Subscribe and receive the good news first, exclusive discounts and perks!</p>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
+import Image from 'next/image';
 import axios from 'axios';
 import API_BASE_URL from '../../../config/api';
 import SkeletonLoader from '@/components/SkeletonLoader';
@@ -112,10 +113,14 @@ export default function ItemPage() {
           <div className="relative flex-1 lg:flex-none lg:w-1/2 flex flex-col items-center justify-center">
             {/* 主图 */}
             <div className="relative aspect-square bg-white rounded-2xl border-2 border-black overflow-hidden mb-4">
-              <img 
+              <Image 
                 src={images[currentImageIndex]} 
                 alt={item.info_name}
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                priority
+                quality={90}
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
               
               {/* 导航按钮 */}
