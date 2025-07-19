@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import API_BASE_URL from '../../config/api';
@@ -8,7 +8,7 @@ import Marquee from "@/components/Marquee";
 import ProductCard from "@/components/ProductCard";
 import SkeletonLoader from "@/components/SkeletonLoader";
 
-export default function ProductPage() {
+function ProductPageContent() {
   const searchParams = useSearchParams();
   const initialFilter = searchParams.get('filter') || 'All';
   
@@ -292,5 +292,13 @@ export default function ProductPage() {
         </div>
       </div>
     </section>
+  );
+}
+
+export default function ProductPage() {
+  return (
+    <Suspense fallback={<SkeletonLoader />}>
+      <ProductPageContent />
+    </Suspense>
   );
 }
